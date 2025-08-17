@@ -23,21 +23,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Detailed Grass 01 LOD1
-  m_Shader: {fileID: -631450621483338060, guid: 84b8f46f4cd6746478c0cbedd8bdc869, type: 3}
+  m_Shader: {fileID: -631450621483338060, guid: 457fb04480e56406192cd18efc0b7e36, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
-  - _METALLICGLOSSMAP
-  - _NORMALMAP
-  m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
-  - _MATERIAL_FEATURE_TRANSMISSION
+  m_InvalidKeywords:
+  - _GLOSSYREFLECTIONS_OFF
+  - _METALLICGLOSSMAP
   - _METALLICSPECGLOSSMAP
+  - _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
@@ -171,9 +170,9 @@ Material:
     - _DiffuseContrast: 0
     - _DiffusionProfileHash: 2.6486764
     - _DoubleSidedEnable: 1
-    - _DoubleSidedGIMode: 0
+    - _DoubleSidedGIMode: 2
     - _DoubleSidedMode: 2
-    - _DoubleSidedNormalMode: 1
+    - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
     - _DstBlend2: 0
     - _DstBlendAlpha: 0
@@ -202,7 +201,7 @@ Material:
     - _LeafSwingFrequency: 0.324
     - _LightingQuality: 1
     - _LinkMapTilingOffset: 1
-    - _MaterialID: 5
+    - _MaterialID: 1
     - _MaterialTypeMask: 34
     - _Metallic: 0
     - _Mode: 0
@@ -307,7 +306,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: -3.698545e+22, g: 20.616848, b: -5.291675e-28, a: -1.3520143e+18}
-    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FloatingOriginOffset_Color: {r: 0, g: 0, b: 0, a: 0}
     - _GlossRemap: {r: 0, g: 0.51202095, b: 0, a: 0}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4428141364687994}
   - component: {fileID: 205191526581301100}
+  - component: {fileID: 3496169202188870781}
   m_Layer: 0
   m_Name: Fir_01_Plant
   m_TagString: Untagged
@@ -62,6 +63,30 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2324455557664817001}
   m_Enabled: 1
+--- !u!114 &3496169202188870781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862648418451654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1674016628, guid: b04c77e0938d27643b3f69f2dd39ce77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _render: 1
+  _overrideRendering: 0
+  _renderDistance: 0
+  _overrideRenderDistance: 0
+  _renderShadows: 1
+  _overrideRenderShadows: 0
+  _shadowDistance: 0
+  _overrideShadowDistance: 0
+  _densityInDistance: 0.125
+  _overrideDensityInDistance: 0
+  _densityInDistanceFalloff: {x: 0.08, y: 0.0075}
+  _overrideDensityInDistanceFalloff: 0
 --- !u!1 &4279543205390090223
 GameObject:
   m_ObjectHideFlags: 0
