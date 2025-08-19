@@ -58,24 +58,33 @@ public class Movement : MonoBehaviour
     {
         moveDirection = orientation.forward * VerticalInput + orientation.right * HorizontalInput;
 
-        if(Input.GetKey(KeyCode.LeftShift) && !Crouching)
+        if (Input.GetKey(KeyCode.LeftShift) && !Crouching)
         {
-            if(Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") == 0) {
-                rb.linearVelocity = new Vector3(moveDirection.x * RunSpeed*0.8f, rb.linearVelocity.y, moveDirection.z*RunSpeed*0.8f);
-            } else if(Math.Abs(Input.GetAxisRaw("Horizontal")) != Math.Abs(Input.GetAxisRaw("Vertical"))) {
-                rb.linearVelocity = new Vector3(moveDirection.x * RunSpeed, rb.linearVelocity.y, moveDirection.z*RunSpeed);    
-            } else {
-                rb.linearVelocity = new Vector3(moveDirection.x * RunSpeed*0.5f, rb.linearVelocity.y, moveDirection.z*RunSpeed*0.5f);
-            }
-            
-        
-        } else {
-            if(Input.GetAxisRaw("Horizontal") != Input.GetAxisRaw("Vertical") && Input.GetAxisRaw("Horizontal") != -1*Input.GetAxisRaw("Vertical"))
+            if (Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") == 0)
             {
-                rb.linearVelocity = new Vector3(moveDirection.x * WalkSpeed, rb.linearVelocity.y, moveDirection.z*WalkSpeed);
-            } else {
-                rb.linearVelocity = new Vector3(moveDirection.x * WalkSpeed*0.7f, rb.linearVelocity.y, moveDirection.z*WalkSpeed*0.7f);
-            }  
+                rb.linearVelocity = new Vector3(moveDirection.x * RunSpeed * 0.8f, rb.linearVelocity.y, moveDirection.z * RunSpeed * 0.8f);
+            }
+            else if (Math.Abs(Input.GetAxisRaw("Horizontal")) != Math.Abs(Input.GetAxisRaw("Vertical")))
+            {
+                rb.linearVelocity = new Vector3(moveDirection.x * RunSpeed, rb.linearVelocity.y, moveDirection.z * RunSpeed);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector3(moveDirection.x * RunSpeed * 0.5f, rb.linearVelocity.y, moveDirection.z * RunSpeed * 0.5f);
+            }
+
+
+        }
+        else
+        {
+            if (Input.GetAxisRaw("Horizontal") != Input.GetAxisRaw("Vertical") && Input.GetAxisRaw("Horizontal") != -1 * Input.GetAxisRaw("Vertical"))
+            {
+                rb.linearVelocity = new Vector3(moveDirection.x * WalkSpeed, rb.linearVelocity.y, moveDirection.z * WalkSpeed);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector3(moveDirection.x * WalkSpeed * 0.7f, rb.linearVelocity.y, moveDirection.z * WalkSpeed * 0.7f);
+            }
         }
     }
 }

@@ -111,7 +111,7 @@ MonoBehaviour:
     m_Value: {fileID: 8900000, guid: 9bd3efcfe7e4f3047ba32bf78862b08d, type: 3}
   spaceEmissionMultiplier:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 200
   spaceRotation:
     m_OverrideState: 1
     m_Value: {x: 0, y: 0, z: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Value: 60
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 15.7
+    m_Value: 77.06
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
