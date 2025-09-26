@@ -250,7 +250,7 @@ Material:
     - _Color: {r: 1, g: 0.9735294, b: 0.9338235, a: 1}
     - _DiffusionProfileAsset: {r: -1.8019567e-30, g: 2.8583547e+22, b: 2.0825967e+12, a: 8.838735e-11}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
-    - _DryColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+    - _DryColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _HealthyColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
     - _NewNormal: {r: 0, g: 0, b: 0, a: 0}

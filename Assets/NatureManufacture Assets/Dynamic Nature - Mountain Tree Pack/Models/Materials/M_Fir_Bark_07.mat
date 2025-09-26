@@ -213,7 +213,7 @@ Material:
     - _TrunkAORemapMax: 1
     - _TrunkAORemapMin: 0
     - _TrunkMetallic: 1
-    - _TrunkNormalScale: 1
+    - _TrunkNormalScale: 0.3
     - _TrunkSmoothnessRemapMax: 1
     - _TrunkSmoothnessRemapMin: 0
     - _UVSec: 0
@@ -230,7 +230,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BarkBaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BarkBaseColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
     - _BarkBlendMaskTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _BarkTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
@@ -238,7 +238,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _NewNormal: {r: 0, g: 0, b: 0, a: 0}
     - _TranslucencyColor: {r: 0.39069322, g: 0.4705882, b: 0.283737, a: 0}
-    - _TrunkBaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _TrunkBaseColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
     - _TrunkTilingOffset: {r: 1, g: 1, b: 0, a: 0}
     - _WindColorMultiply: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
