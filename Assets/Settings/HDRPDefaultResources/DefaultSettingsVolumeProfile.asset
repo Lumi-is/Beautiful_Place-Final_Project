@@ -2174,7 +2174,7 @@ MonoBehaviour:
     m_Value: 1
   meteringMode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   luminanceSource:
     m_OverrideState: 1
     m_Value: 1
@@ -2276,7 +2276,7 @@ MonoBehaviour:
     m_Value: 1.5
   adaptationSpeedLightToDark:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 3
   weightTextureMask:
     m_OverrideState: 1
     m_Value: {fileID: 0}
