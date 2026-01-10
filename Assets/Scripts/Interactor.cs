@@ -1,13 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameStageManager))]
 [RequireComponent(typeof(Camera))]
 [RequireComponent(typeof(DialogueHandler))]
 public class Interactor : MonoBehaviour
 {
+    //Referral to the list of layerMasks player can interact with by pressing the "interact" button
     LayerMask interactableMask;
+    //For optional conversations with NPCs
     LayerMask NPCMask;
+    //cam
     Camera mainCam;
+    //For referencing a script which contains methods for showing different dialogues on screen
     DialogueHandler dialogueHandler;
 
 
@@ -16,6 +21,8 @@ public class Interactor : MonoBehaviour
     public Transform holster;
     public int inventorySize;
     public int inventoryItemsSize;
+
+    public GameObject lastInteractedObject;
 
     void Start()
     {
@@ -32,15 +39,14 @@ public class Interactor : MonoBehaviour
     {
         if (heldObject != null)
         {
-            heldObject.position = holster.position;
-            heldObject.rotation = holster.rotation;
-
+            heldObject.SetPositionAndRotation(holster.position, holster.rotation);
         }
         Ray ray = mainCam.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0));
 
         if (Physics.Raycast(ray, out RaycastHit hit, 3, interactableMask) && Input.GetKeyDown(KeyCode.E))
         {
-            if (hit.collider.GetComponent<Observable>() != null && !dialogueHandler.dialogueOnScreen)
+            lastInteractedObject = hit.collider.gameObject;
+            if (hit.collider.GetComponent<Observable>() != null && !dialogueHandler.isDialogueOnScreen)
             {
                 dialogueHandler.DisplayObjectDialogue(hit.collider.GetComponent<Observable>().dialogueToShow);
             }

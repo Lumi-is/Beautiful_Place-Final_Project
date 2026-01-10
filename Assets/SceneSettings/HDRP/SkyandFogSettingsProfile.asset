@@ -17,10 +17,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   skyIntensityMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   exposure:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: -3
   multiplier:
     m_OverrideState: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   atmosphericScattering:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   renderingMode:
     m_OverrideState: 0
@@ -71,11 +71,11 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 55261.973
   aerosolDensity:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   aerosolTint:
     m_OverrideState: 0
-    m_Value: {r: 0.85545355, g: 1, b: 0.33333337, a: 1}
+    m_Value: {r: 0.2956568, g: 0.41509432, b: 0.29616728, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 0
     m_Value: 8289.296
@@ -83,7 +83,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: -0.37
   ozoneDensityDimmer:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   ozoneMinimumAltitude:
     m_OverrideState: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {x: 0, y: 0, z: 0}
   colorSaturation:
-    m_OverrideState: 1
-    m_Value: 0.3
+    m_OverrideState: 0
+    m_Value: 0
   alphaSaturation:
     m_OverrideState: 0
     m_Value: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
     m_Value: 1
   color:
     m_OverrideState: 0
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   tint:
     m_OverrideState: 0
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -209,7 +209,7 @@ MonoBehaviour:
     m_Value: 0
   anisotropy:
     m_OverrideState: 1
-    m_Value: 0.311
+    m_Value: 0.5
   sliceDistributionUniformity:
     m_OverrideState: 0
     m_Value: 1

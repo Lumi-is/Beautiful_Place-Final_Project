@@ -56,6 +56,7 @@ public class Movement : MonoBehaviour
 
     void MoveAction()
     {
+
         moveDirection = orientation.forward * VerticalInput + orientation.right * HorizontalInput;
 
         if (Input.GetKey(KeyCode.LeftShift) && !Crouching)
