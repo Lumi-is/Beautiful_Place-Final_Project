@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Lucy
   textLingerDuration: 1
+  shouldPlayerBeStatic: 1
   mainDialogue:
   - Hey, wake up!
   - "Don\u2019t fall too much behind, dummy. We still have a long way to walk, so\u2026
@@ -25,7 +26,7 @@ MonoBehaviour:
   - Sorry, I will try to keep up.
   - Just got distracted by some messages from home, they are worried sick about us
     going this far into the forest to film.
-  - ' will try to keep my head in the game.'
+  - I will try to keep my head in the game.
   mainAnswerB:
   - I was just checking some messages.
   - "I will keep up, don\u2019t you worry."

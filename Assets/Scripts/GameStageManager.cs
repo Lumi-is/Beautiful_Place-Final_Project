@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using System;
 
 [RequireComponent(typeof(Interactor))]
 [RequireComponent(typeof(DialogueHandler))]
@@ -14,23 +15,40 @@ public class GameStageManager : MonoBehaviour
     private DialogueHandler dialogueHandler;
     private Interactor interactor;
 
-
-
-    private Transform playerTransform;
+    [SerializeField] Transform daylightCycle;
+    private float inGameTime;
 
     [SerializeField] List<string> npcNames;
     [SerializeField] List<Transform> npcTransforms;
     public Dictionary<string, Transform> npcDictionary;
 
-    public void Start()
+    void Start()
     {
         dialogueHandler = GetComponent<DialogueHandler>();
 
+        try
+        {
+            npcDictionary = new();
+            for (int i = 0; i < npcNames.Count; i++)
+            {
+                npcDictionary.Add(npcNames[i],npcTransforms[i]);
+            }
+        } catch (Exception e)
+        {
+            Debug.LogWarning("NPC Names and Transforms amount mismatch error:"+e);
+        }
         //Debug
         StartCoroutine(PlayStage(gameStages[currentGameStage]));
     }
+
+    void Update()
+    {
+        daylightCycle.rotation = Quaternion.Slerp(daylightCycle.rotation, Quaternion.Euler(inGameTime,0,0), Time.deltaTime);
+    }
+
     IEnumerator PlayStage(GameStage gameStage)
     {
+        inGameTime = gameStage.inGameTime;
         SetNPCBehaviour(gameStage.npcStages);
         StartCoroutine(dialogueHandler.PlayMainDialogue(gameStage.dialogueStates));
         yield return new WaitUntil(() => dialogueHandler.isDialogueFinished);
@@ -121,13 +139,14 @@ public class GameStageManager : MonoBehaviour
 
     private IEnumerator ObjectivePlayerLocation(Objective objective)
     {
-        yield return new WaitUntil(() => Vector3.Distance(playerTransform.position,objective.targetLocation) <= objective.proximityThreshold);
+        yield return new WaitUntil(() => Vector3.Distance(StaticConstants.playerTransform.position,objective.targetLocation) <= objective.proximityThreshold);
         objective.hasBeenFulfilled = true;
     }
 
     private IEnumerator ObjectiveProximityToNPC(Objective objective)
     {
-        yield return new WaitUntil(() => Vector3.Distance(playerTransform.position,npcDictionary[objective.npcName].position) <= objective.proximityThreshold);
+        Debug.Log(npcDictionary["Lucy"].position);
+        yield return new WaitUntil(() => Vector3.Distance(StaticConstants.playerTransform.position,npcDictionary[objective.npcName].position) <= objective.proximityThreshold);
         objective.hasBeenFulfilled = true;
     }
 

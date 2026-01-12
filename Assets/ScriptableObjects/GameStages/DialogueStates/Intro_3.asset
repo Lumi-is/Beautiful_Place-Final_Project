@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e51cef29dcc518468f74426dd831db2, type: 3}
+  m_Name: Intro_3
+  m_EditorClassIdentifier: 
+  npcName: Lucy
+  textLingerDuration: 1
+  shouldPlayerBeStatic: 0
+  mainDialogue:
+  - ...
+  - Remember our last trip?
+  - How you managed to get stuck in that little old house and I had to call the emergency
+    number?
+  mainPlayerOptions:
+  - That was your fault.
+  mainAnswerA:
+  - Hey, it was one of your pranks which got me stuck like that.
+  - Not fair to blame me for that.
+  mainAnswerB: []
+  mainAnswerC: []
+  optionalDialogue: []
+  optionalPlayerOptions: []
+  optionalAnswerA: []
+  optionalAnswerB: []
+  optionalAnswerC: []

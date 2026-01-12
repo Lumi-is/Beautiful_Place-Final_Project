@@ -16,3 +16,4 @@ MonoBehaviour:
   dialogueStates: []
   npcStages:
   - {fileID: 11400000, guid: 2f3fd0d9d2586aa4c8dc63fd9e8e506b, type: 2}
+  inGameTime: 210

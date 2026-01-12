@@ -59,6 +59,11 @@ public class Movement : MonoBehaviour
 
         moveDirection = orientation.forward * VerticalInput + orientation.right * HorizontalInput;
 
+        if(DialogueHandler.isStaticDialogueOnScreen)
+        {
+            rb.linearVelocity = new Vector3(0,0,0); 
+            return;
+        } 
         if (Input.GetKey(KeyCode.LeftShift) && !Crouching)
         {
             if (Input.GetAxisRaw("Vertical") == -1 && Input.GetAxisRaw("Horizontal") == 0)

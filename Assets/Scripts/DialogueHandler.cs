@@ -32,7 +32,8 @@ public class DialogueHandler : MonoBehaviour
     [Tooltip("Default extra amount of seconds dialogue is shown for.")]
     public float extraDialogueLingering;
 
-    public bool isDialogueOnScreen;
+    public static bool isStaticDialogueOnScreen;
+    public static bool isDynamicDialogueOnScreen;
     public bool isDialogueFinished = true;
 
     public int howManyOptionsOnScreen;
@@ -88,14 +89,22 @@ public class DialogueHandler : MonoBehaviour
 
     public void DisplayObjectDialogue(string dialogue)
     {
-        isDialogueOnScreen = true;
+        isDynamicDialogueOnScreen = true;
         dialogueBox.text = dialogue;
         Invoke(nameof(EmptyDialogue), extraDialogueLingering);
     }
 
-    public void DisplayNPCDialogue(string dialogue, string npcName)
+    public void DisplayNPCDialogue(string dialogue, string npcName, bool shouldPlayerBeStatic)
     {
-        isDialogueOnScreen = true;
+        if(shouldPlayerBeStatic)
+        {
+            isStaticDialogueOnScreen = true;
+        } else
+        {
+            isDynamicDialogueOnScreen = true;
+        }
+
+        
         dialogueBox.text = npcName+": "+dialogue;
 
         if(npcName == "Lucy")
@@ -112,7 +121,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void DisplayPlayerDialogue(string dialogue)
     {
-        isDialogueOnScreen = true;
+        isDynamicDialogueOnScreen = true;
         dialogueBox.text = "Player: "+dialogue;
 
         dialogueBox.color = playerTextColor;
@@ -120,6 +129,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void DisplayPlayerOptions(string dialogueOptionAtext)
     {
+        isStaticDialogueOnScreen = true;
         howManyOptionsOnScreen = 1;
         dialogueOptionA.text = dialogueOptionAtext;
 
@@ -128,6 +138,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void DisplayPlayerOptions(string dialogueOptionAtext, string dialogueOptionBtext)
     {
+        isStaticDialogueOnScreen = true;
         howManyOptionsOnScreen = 2;
         dialogueOptionA.text = dialogueOptionAtext;
         dialogueOptionB.text = dialogueOptionBtext;
@@ -138,6 +149,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void DisplayPlayerOptions(string dialogueOptionAtext, string dialogueOptionBtext, string dialogueOptionCtext)
     {
+        isStaticDialogueOnScreen = true;
         howManyOptionsOnScreen = 3;
         dialogueOptionA.text = dialogueOptionAtext;
         dialogueOptionB.text = dialogueOptionBtext;
@@ -154,7 +166,8 @@ public class DialogueHandler : MonoBehaviour
         dialogueOptionA.text = "";
         dialogueOptionB.text = "";
         dialogueOptionC.text = "";
-        isDialogueOnScreen = false;
+        isStaticDialogueOnScreen = false;
+        isDynamicDialogueOnScreen = false;
         howManyOptionsOnScreen = 0;
 
         dialogueBox.color = Color.white;
@@ -172,7 +185,7 @@ public class DialogueHandler : MonoBehaviour
 
             foreach(string dialogue in dialogueStates[i].mainDialogue)
             {
-                DisplayNPCDialogue(dialogue, dialogueStates[i].npcName);
+                DisplayNPCDialogue(dialogue, dialogueStates[i].npcName, dialogueStates[i].shouldPlayerBeStatic);
                 yield return new WaitForSeconds(dialogue.Length*timeDialogueShownPerChar+dialogueStates[i].textLingerDuration+extraDialogueLingering);
                 EmptyDialogue();
             }

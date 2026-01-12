@@ -7,6 +7,8 @@ public class DialogueState : ScriptableObject
     public string npcName;
     public float textLingerDuration;
     
+    public bool shouldPlayerBeStatic;
+    
     public List<string> mainDialogue;
     public List<string> mainPlayerOptions;
     public List<string> mainAnswerA;

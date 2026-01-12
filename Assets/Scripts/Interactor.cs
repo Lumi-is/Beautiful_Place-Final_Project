@@ -46,7 +46,7 @@ public class Interactor : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 3, interactableMask) && Input.GetKeyDown(KeyCode.E))
         {
             lastInteractedObject = hit.collider.gameObject;
-            if (hit.collider.GetComponent<Observable>() != null && !dialogueHandler.isDialogueOnScreen)
+            if (hit.collider.GetComponent<Observable>() != null && !DialogueHandler.isStaticDialogueOnScreen && !DialogueHandler.isDynamicDialogueOnScreen)
             {
                 dialogueHandler.DisplayObjectDialogue(hit.collider.GetComponent<Observable>().dialogueToShow);
             }
