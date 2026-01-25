@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108c8b272e891884d96fbb4ee2c7d382, type: 3}
+  m_Name: Russel_1
+  m_EditorClassIdentifier: 
+  objectives: []
+  dialogueStates:
+  - {fileID: 11400000, guid: d7f9f47c8b966c646b9f8d43d9b24a4d, type: 2}
+  - {fileID: 11400000, guid: 1baba1445e9ae0b42905e53607b29eb8, type: 2}
+  - {fileID: 11400000, guid: 185d03917e834f440b1e91acf66135d6, type: 2}
+  - {fileID: 11400000, guid: addf1ffe0b4424947af37220c530fc08, type: 2}
+  npcStages:
+  - {fileID: 11400000, guid: 2f3fd0d9d2586aa4c8dc63fd9e8e506b, type: 2}
+  inGameTime: 270

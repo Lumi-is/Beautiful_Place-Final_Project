@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using System;
 
 [RequireComponent(typeof(Interactor))]
@@ -16,7 +14,7 @@ public class GameStageManager : MonoBehaviour
     private Interactor interactor;
 
     [SerializeField] Transform daylightCycle;
-    private float inGameTime;
+    public static float inGameTime;
 
     [SerializeField] List<string> npcNames;
     [SerializeField] List<Transform> npcTransforms;
@@ -39,11 +37,6 @@ public class GameStageManager : MonoBehaviour
         }
         //Debug
         StartCoroutine(PlayStage(gameStages[currentGameStage]));
-    }
-
-    void Update()
-    {
-        daylightCycle.rotation = Quaternion.Slerp(daylightCycle.rotation, Quaternion.Euler(inGameTime,0,0), Time.deltaTime);
     }
 
     IEnumerator PlayStage(GameStage gameStage)

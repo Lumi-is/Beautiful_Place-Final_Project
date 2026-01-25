@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 108c8b272e891884d96fbb4ee2c7d382, type: 3}
-  m_Name: Intro_2
+  m_Name: Intro_7
   m_EditorClassIdentifier: 
-  objectives:
-  - {fileID: 11400000, guid: 944154123b2b8a948921c707fb86d8ad, type: 2}
+  objectives: []
   dialogueStates:
-  - {fileID: 11400000, guid: 0f2ee28302bcb124887aa000319089af, type: 2}
+  - {fileID: 11400000, guid: 11c82e2ec39c39f4295ef41998ceb884, type: 2}
   npcStages:
-  - {fileID: 11400000, guid: f90b03ab1a7ccc74ca3614e258547c32, type: 2}
-  inGameTime: 202
+  - {fileID: 11400000, guid: 2f3fd0d9d2586aa4c8dc63fd9e8e506b, type: 2}
+  inGameTime: 230

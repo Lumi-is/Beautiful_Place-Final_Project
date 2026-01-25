@@ -126,7 +126,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AORemapMax: 1
+    - _AORemapMax: 0.4
     - _AORemapMin: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoff: 0.5
@@ -176,7 +176,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NoiseWindSpeed: 0.52
-    - _NormalScale: 8
+    - _NormalScale: 1
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.02

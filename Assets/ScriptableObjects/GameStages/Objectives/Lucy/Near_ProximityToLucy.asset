@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 108c8b272e891884d96fbb4ee2c7d382, type: 3}
-  m_Name: Empty
+  m_Script: {fileID: 11500000, guid: 4ce21360e7538234e87713f8ca46f9bc, type: 3}
+  m_Name: Near_ProximityToLucy
   m_EditorClassIdentifier: 
-  objectives: []
-  dialogueStates: []
-  npcStages:
-  - {fileID: 11400000, guid: 2f3fd0d9d2586aa4c8dc63fd9e8e506b, type: 2}
-  inGameTime: 210
+  type: ProximityToNPC
+  hasBeenFulfilled: 1
+  itemTag: 
+  timer: 0
+  npcName: Lucy
+  targetLocation: {x: 0, y: 0, z: 0}
+  proximityThreshold: 6
+  interactable: 

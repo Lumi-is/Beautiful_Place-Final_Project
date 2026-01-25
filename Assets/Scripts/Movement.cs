@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour
 
         if(DialogueHandler.isStaticDialogueOnScreen)
         {
-            rb.linearVelocity = new Vector3(0,0,0); 
+            rb.linearVelocity = new Vector3(0,rb.linearVelocity.y,0); 
             return;
         } 
         if (Input.GetKey(KeyCode.LeftShift) && !Crouching)
