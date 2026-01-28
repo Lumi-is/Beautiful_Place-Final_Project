@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b9408f08926c248ad9c902b4f70920, type: 3}
+  m_Name: Intro_5
+  m_EditorClassIdentifier: 
+  npcTag: Lucy
+  BehaviourTypes:
+  - WalkToPos
+  npcTargetLocations:
+  - {x: -28.34448, y: 58.12053, z: -216.5651}
+  - {x: -29.29784, y: 57.72282, z: -213.252}
+  - {x: -27.92694, y: 55.88676, z: -208.562}
+  - {x: -28.44463, y: 55.41022, z: -201.3215}
+  proximityThreshold: 1

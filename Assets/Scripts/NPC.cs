@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
-    private static WaitForSeconds _waitForSeconds0_1 = new WaitForSeconds(0.1f);
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
     [SerializeField] float walkSpeed;
@@ -65,18 +64,21 @@ public class NPC : MonoBehaviour
             {
                 agent.destination = targetLocation;
                 agent.speed = walkSpeed;
-                yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) < npcStage.proximityThreshold);
+                yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) <= npcStage.proximityThreshold+0.5f);
             }
         }
     }
 
     public IEnumerator WalkToPos()
     {
+        Debug.Log("Target location amount:"+npcStage.npcTargetLocations.Count);
+
         foreach(Vector3 targetLocation in npcStage.npcTargetLocations)
         {
             agent.destination = targetLocation;
             agent.speed = walkSpeed;
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) < npcStage.proximityThreshold);
+            Debug.Log("Test");
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) <= npcStage.proximityThreshold+0.5f);
         }
         actionComplete = true;
     }
@@ -87,7 +89,7 @@ public class NPC : MonoBehaviour
         {
             agent.destination = targetLocation;
             agent.speed = runSpeed;
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) < npcStage.proximityThreshold);
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) <= npcStage.proximityThreshold+0.5f);
         }
         actionComplete = true;
     }
@@ -98,7 +100,7 @@ public class NPC : MonoBehaviour
         {   
             agent.destination = FindAnyObjectByType<Camera>().transform.position;
             agent.speed = walkSpeed;
-            yield return _waitForSeconds0_1;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -107,8 +109,8 @@ public class NPC : MonoBehaviour
         while(!actionComplete)
         {   
             agent.destination = FindAnyObjectByType<Camera>().transform.position;
-            agent.speed = walkSpeed;
-            yield return _waitForSeconds0_1;
+            agent.speed = runSpeed;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

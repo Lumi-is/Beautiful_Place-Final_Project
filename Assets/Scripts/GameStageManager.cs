@@ -2,18 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Interactor))]
 [RequireComponent(typeof(DialogueHandler))]
 public class GameStageManager : MonoBehaviour
 {
-    private static WaitForSeconds _waitForSeconds1 = new WaitForSeconds(1);
     public List<GameStage> gameStages;
     public int currentGameStage;
+    public Scene currentScene;
     private DialogueHandler dialogueHandler;
-    private Interactor interactor;
-
-    [SerializeField] Transform daylightCycle;
+    private readonly Interactor interactor;
     public static float inGameTime;
 
     [SerializeField] List<string> npcNames;
@@ -35,12 +33,19 @@ public class GameStageManager : MonoBehaviour
         {
             Debug.LogWarning("NPC Names and Transforms amount mismatch error:"+e);
         }
-        //Debug
+        // Start when game begins
         StartCoroutine(PlayStage(gameStages[currentGameStage]));
     }
 
     IEnumerator PlayStage(GameStage gameStage)
     {
+        currentScene = SceneManager.GetActiveScene();
+
+        if(currentScene.buildIndex != gameStage.sceneIndex)
+        {
+            SceneManager.LoadScene(gameStage.sceneIndex);
+        }
+
         inGameTime = gameStage.inGameTime;
         SetNPCBehaviour(gameStage.npcStages);
         StartCoroutine(dialogueHandler.PlayMainDialogue(gameStage.dialogueStates));
@@ -53,7 +58,8 @@ public class GameStageManager : MonoBehaviour
         foreach (NPCStage npcStage in npcStages)
         {
             NPC npc;
-            npc = GameObject.FindWithTag(npcStage.npcTag).GetComponent<NPC>();
+            npc = npcDictionary[npcStage.npcTag].GetComponent<NPC>();
+            Debug.Log(npc.name);
             npc.npcStage = npcStage;
             npc.StartNewGameStage();
         }
@@ -107,7 +113,7 @@ public class GameStageManager : MonoBehaviour
     {
         while (objective.hasBeenFulfilled == false)
         {
-            yield return _waitForSeconds1;
+            yield return new WaitForSeconds(1);
             foreach (Grabbable grabbable in interactor.inventoryList)
             {
                 if(grabbable.gameObject.CompareTag(objective.itemTag))
@@ -138,7 +144,6 @@ public class GameStageManager : MonoBehaviour
 
     private IEnumerator ObjectiveProximityToNPC(Objective objective)
     {
-        Debug.Log(npcDictionary["Lucy"].position);
         yield return new WaitUntil(() => Vector3.Distance(StaticConstants.playerTransform.position,npcDictionary[objective.npcName].position) <= objective.proximityThreshold);
         objective.hasBeenFulfilled = true;
     }

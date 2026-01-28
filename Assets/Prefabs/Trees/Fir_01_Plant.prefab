@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4428141364687994}
   - component: {fileID: 205191526581301100}
   - component: {fileID: 3496169202188870781}
+  - component: {fileID: 3340684716401158832}
   m_Layer: 0
   m_Name: Fir_01_Plant
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1862648418451654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -87,6 +88,22 @@ MonoBehaviour:
   _overrideDensityInDistance: 0
   _densityInDistanceFalloff: {x: 0.08, y: 0.0075}
   _overrideDensityInDistanceFalloff: 0
+--- !u!208 &3340684716401158832
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862648418451654}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4279543205390090223
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(GameStageManager))]
-[RequireComponent(typeof(Camera))]
-[RequireComponent(typeof(DialogueHandler))]
 public class Interactor : MonoBehaviour
 {
     //Referral to the list of layerMasks player can interact with by pressing the "interact" button
@@ -11,7 +8,7 @@ public class Interactor : MonoBehaviour
     //For optional conversations with NPCs
     LayerMask NPCMask;
     //cam
-    Camera mainCam;
+    [SerializeField] Camera mainCam;
     //For referencing a script which contains methods for showing different dialogues on screen
     DialogueHandler dialogueHandler;
 
@@ -28,9 +25,6 @@ public class Interactor : MonoBehaviour
     {
         interactableMask = LayerMask.GetMask("Interactable", "Observable", "Grabbable");
         NPCMask = LayerMask.GetMask("NPC");
-
-
-        mainCam = GetComponent<Camera>();
         dialogueHandler = GetComponent<DialogueHandler>();
     }
 

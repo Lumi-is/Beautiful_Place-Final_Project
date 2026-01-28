@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(GameStageManager))]
-[RequireComponent(typeof(Interactor))]
 public class DialogueHandler : MonoBehaviour
 {
 
@@ -34,7 +31,6 @@ public class DialogueHandler : MonoBehaviour
 
     public static bool isStaticDialogueOnScreen;
     public static bool isDynamicDialogueOnScreen;
-    public bool isDialogueFinished = true;
 
     public int howManyOptionsOnScreen;
 
@@ -46,13 +42,24 @@ public class DialogueHandler : MonoBehaviour
     public Color russelTextColor;
     public Color defaultNpcTextColor;
 
-    void Start()
-    {
-        EmptyDialogue();
-    }
+    public bool isDialogueFinished;
+    private bool lineOver;
+
+    [SerializeField] CameraMovement cameraMovement;
+    private Transform talkingNPC;
 
     void Update()
     {
+        if(isStaticDialogueOnScreen)
+        {
+            cameraMovement.LookAtNPC(talkingNPC);
+        } else
+        {
+            cameraMovement.ignoreCameraMovement = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.G)) SkipDialogue();
+
         if(howManyOptionsOnScreen > 0)
         {
             dialogueHighlighter.SetActive(true);
@@ -87,6 +94,11 @@ public class DialogueHandler : MonoBehaviour
         }
     }
 
+    private void SkipDialogue()
+    {
+        lineOver = true;
+    }
+
     public void DisplayObjectDialogue(string dialogue)
     {
         isDynamicDialogueOnScreen = true;
@@ -96,6 +108,7 @@ public class DialogueHandler : MonoBehaviour
 
     public void DisplayNPCDialogue(string dialogue, string npcName, bool shouldPlayerBeStatic)
     {
+        talkingNPC = GetComponent<GameStageManager>().npcDictionary[npcName];
         if(shouldPlayerBeStatic)
         {
             isStaticDialogueOnScreen = true;
@@ -127,17 +140,32 @@ public class DialogueHandler : MonoBehaviour
         dialogueBox.color = playerTextColor;
     }
 
-    public void DisplayPlayerOptions(string dialogueOptionAtext)
+    public void DisplayPlayerOptions(string dialogueOptionAtext, bool shouldPlayerBeStatic)
     {
-        isStaticDialogueOnScreen = true;
+        if(shouldPlayerBeStatic)
+        {
+            isStaticDialogueOnScreen = true;
+        } else
+        {
+            isDynamicDialogueOnScreen = true;
+        }
+        
         howManyOptionsOnScreen = 1;
         dialogueOptionA.text = dialogueOptionAtext;
 
         dialogueOptionA.color = playerTextColor;
     }
 
-    public void DisplayPlayerOptions(string dialogueOptionAtext, string dialogueOptionBtext)
+    public void DisplayPlayerOptions(string dialogueOptionAtext, string dialogueOptionBtext, bool shouldPlayerBeStatic)
     {
+        if(shouldPlayerBeStatic)
+        {
+            isStaticDialogueOnScreen = true;
+        } else
+        {
+            isDynamicDialogueOnScreen = true;
+        }
+
         isStaticDialogueOnScreen = true;
         howManyOptionsOnScreen = 2;
         dialogueOptionA.text = dialogueOptionAtext;
@@ -147,8 +175,16 @@ public class DialogueHandler : MonoBehaviour
         dialogueOptionB.color = playerTextColor;
     }
 
-    public void DisplayPlayerOptions(string dialogueOptionAtext, string dialogueOptionBtext, string dialogueOptionCtext)
+    public void DisplayPlayerOptions(string dialogueOptionAtext, string dialogueOptionBtext, string dialogueOptionCtext, bool shouldPlayerBeStatic)
     {
+        if(shouldPlayerBeStatic)
+        {
+            isStaticDialogueOnScreen = true;
+        } else
+        {
+            isDynamicDialogueOnScreen = true;
+        }
+
         isStaticDialogueOnScreen = true;
         howManyOptionsOnScreen = 3;
         dialogueOptionA.text = dialogueOptionAtext;
@@ -174,11 +210,13 @@ public class DialogueHandler : MonoBehaviour
         dialogueOptionA.color = Color.white;
         dialogueOptionB.color = Color.white;
         dialogueOptionC.color = Color.white;
+        lineOver = false;
     }
 
     public IEnumerator PlayMainDialogue(List<DialogueState> dialogueStates)
     {
         isDialogueFinished = false;
+
         for(int i = 0; i < dialogueStates.Count; i++)
         {
             EmptyDialogue();
@@ -186,21 +224,21 @@ public class DialogueHandler : MonoBehaviour
             foreach(string dialogue in dialogueStates[i].mainDialogue)
             {
                 DisplayNPCDialogue(dialogue, dialogueStates[i].npcName, dialogueStates[i].shouldPlayerBeStatic);
-                yield return new WaitForSeconds(dialogue.Length*timeDialogueShownPerChar+dialogueStates[i].textLingerDuration+extraDialogueLingering);
+                StartCoroutine(LineTimer(dialogue,dialogueStates[i]));
+                yield return new WaitUntil(()=> lineOver);
                 EmptyDialogue();
             }
 
-            if(dialogueStates[i].mainPlayerOptions != null)
+            if(dialogueStates[i].mainPlayerOptions.Count != 0)
             {
                 if(dialogueStates[i].mainPlayerOptions.Count == 1) {
-                    DisplayPlayerOptions(dialogueStates[i].mainPlayerOptions[0]);
+                    DisplayPlayerOptions(dialogueStates[i].mainPlayerOptions[0], dialogueStates[i].shouldPlayerBeStatic);
                 } else if (dialogueStates[i].mainPlayerOptions.Count == 2) {
-                    DisplayPlayerOptions(dialogueStates[i].mainPlayerOptions[0],dialogueStates[i].mainPlayerOptions[1]);
+                    DisplayPlayerOptions(dialogueStates[i].mainPlayerOptions[0],dialogueStates[i].mainPlayerOptions[1], dialogueStates[i].shouldPlayerBeStatic);
                 } else if (dialogueStates[i].mainPlayerOptions.Count == 3) {
-                    DisplayPlayerOptions(dialogueStates[i].mainPlayerOptions[0],dialogueStates[i].mainPlayerOptions[1],dialogueStates[i].mainPlayerOptions[2]);
+                    DisplayPlayerOptions(dialogueStates[i].mainPlayerOptions[0],dialogueStates[i].mainPlayerOptions[1],dialogueStates[i].mainPlayerOptions[2], dialogueStates[i].shouldPlayerBeStatic);
                 }
 
-                //Make event which turns playerChoiceMade to be true when choosing any of the options (WIP)
                 yield return new WaitUntil(() => playerChoiceMade); playerChoiceMade = false; EmptyDialogue();
 
                 List<string> mainAnswer;
@@ -218,12 +256,29 @@ public class DialogueHandler : MonoBehaviour
                 foreach(string dialogue in mainAnswer)
                 {
                     DisplayPlayerDialogue(dialogue);
-                    yield return new WaitForSeconds(dialogue.Length*timeDialogueShownPerChar+dialogueStates[i].textLingerDuration+extraDialogueLingering);
+                    StartCoroutine(LineTimer(dialogue,dialogueStates[i]));
+                    yield return new WaitUntil(()=> lineOver);
                     EmptyDialogue();
                 }   
             }
+            Debug.Log("Dialogue Was Finished: '"+dialogueStates[0].mainDialogue[0]+"'");
         }
-        isDialogueFinished = true;   
+        isDialogueFinished = true;
+    }
+
+    public IEnumerator LineTimer(string dialogue, DialogueState dialogueState)
+    {
+        for(float i = 0; i < dialogue.Length*timeDialogueShownPerChar+dialogueState.textLingerDuration+extraDialogueLingering; i+=0.1f)
+        {
+            if(lineOver)
+            {
+                yield return null;
+            } else
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        lineOver = true;
     }
 }
 

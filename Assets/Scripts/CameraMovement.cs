@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public bool OverlayOpen;
-    [SerializeField] Transform orientation;
+    public bool ignoreCameraMovement;
+    [SerializeField] Transform yOrientation;
+    public Transform listeningOrientation;
 
     public float GlobalSensitivity;
 
@@ -20,20 +21,26 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        if(!OverlayOpen)
-        {
-            SensitivityX = GlobalSensitivity;
-            SensitivityY = GlobalSensitivity;
+        if(ignoreCameraMovement) return;
         
-            MousePosX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * SensitivityX;
-            MousePosY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * SensitivityY;
+        SensitivityX = GlobalSensitivity;
+        SensitivityY = GlobalSensitivity;
+    
+        MousePosX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * SensitivityX;
+        MousePosY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * SensitivityY;
 
-            yRotation += MousePosX;
-            xRotation -= MousePosY;
-            xRotation = Mathf.Clamp(xRotation,-72f,72f);
+        yRotation += MousePosX;
+        xRotation -= MousePosY;
+        xRotation = Mathf.Clamp(xRotation,-72f,72f);
 
-            transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
-            orientation.rotation = Quaternion.Euler(0,yRotation,0);
-        }
+        transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
+        yOrientation.rotation = Quaternion.Euler(0,yRotation,0);
+    }
+
+    public void LookAtNPC(Transform npc)
+    {
+        ignoreCameraMovement = true;
+        listeningOrientation.LookAt(npc.position+new Vector3(0,1f,0));
+        transform.rotation = Quaternion.Slerp(transform.rotation, listeningOrientation.rotation, Time.deltaTime);
     }
 }
