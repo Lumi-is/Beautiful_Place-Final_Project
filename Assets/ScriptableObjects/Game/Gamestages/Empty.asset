@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108c8b272e891884d96fbb4ee2c7d382, type: 3}
   m_Name: Empty
   m_EditorClassIdentifier: 
-  sceneIndex: 0
+  sceneIndex: 1
   objectives: []
   dialogueStates: []
   npcStages:

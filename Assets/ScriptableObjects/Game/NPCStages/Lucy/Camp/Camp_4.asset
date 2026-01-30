@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b9408f08926c248ad9c902b4f70920, type: 3}
+  m_Name: Camp_4
+  m_EditorClassIdentifier: 
+  npcTag: Lucy
+  BehaviourTypes:
+  - RunToPos
+  npcTargetLocations:
+  - {x: -71.20538, y: 70.45654, z: 25.70015}
+  - {x: -57.5676, y: 73.55069, z: 23.55264}
+  - {x: -49.28863, y: 74.51247, z: 20.59388}
+  - {x: -46.0444, y: 74.44885, z: 19.9608}
+  proximityThreshold: 1

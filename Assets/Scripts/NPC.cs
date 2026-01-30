@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 
 public class NPC : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class NPC : MonoBehaviour
     [SerializeField] float runSpeed;
     public NPCStage npcStage;
 
+    bool isFollowing;
     bool actionComplete;
 
     public void StartNewGameStage()
@@ -22,6 +24,11 @@ public class NPC : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Velocity",agent.velocity.magnitude);
+
+        if(isFollowing)
+        {
+            agent.destination = FindAnyObjectByType<Camera>().transform.position;
+        }
     }
 
     public IEnumerator Initialize()
@@ -34,22 +41,28 @@ public class NPC : MonoBehaviour
 
             if(behaviourType == "LoopPos")
             {
+                isFollowing = false;
                 //action only completed upon gameStage changing WIP
                 StartCoroutine(LoopPos());
             } else if(behaviourType == "WalkToPos")
             {
+                isFollowing = false;
                 StartCoroutine(WalkToPos());
             } else if(behaviourType == "RunToPos")
             {
+                isFollowing = false;
                 StartCoroutine(RunToPos());
             } else if(behaviourType == "FollowWalk")
             {
-                StartCoroutine(FollowWalk());
+                isFollowing = true;
+                agent.speed = walkSpeed;
             } else if(behaviourType == "FollowRun")
             {
-                StartCoroutine(FollowRun());
+                isFollowing = true;
+                agent.speed = runSpeed;
             } else
             {
+                isFollowing = false;
                 actionComplete = true;
             }
             yield return new WaitUntil(() => actionComplete);
@@ -92,25 +105,5 @@ public class NPC : MonoBehaviour
             yield return new WaitUntil(() => Vector3.Distance(transform.position, targetLocation) <= npcStage.proximityThreshold+0.5f);
         }
         actionComplete = true;
-    }
-
-    public IEnumerator FollowWalk()
-    {
-        while(!actionComplete)
-        {   
-            agent.destination = FindAnyObjectByType<Camera>().transform.position;
-            agent.speed = walkSpeed;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    public IEnumerator FollowRun()
-    {
-        while(!actionComplete)
-        {   
-            agent.destination = FindAnyObjectByType<Camera>().transform.position;
-            agent.speed = runSpeed;
-            yield return new WaitForSeconds(0.1f);
-        }
     }
 }

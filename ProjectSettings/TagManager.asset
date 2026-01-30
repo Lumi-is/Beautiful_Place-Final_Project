@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lucy
   - Russel
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

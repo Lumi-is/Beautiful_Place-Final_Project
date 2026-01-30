@@ -5,8 +5,5 @@ using UnityEngine;
 [RequireComponent(typeof(GameStageManager))]
 public class PlayerObject : MonoBehaviour
 {
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    // Use this to create new player objects easily
 }

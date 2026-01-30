@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ce21360e7538234e87713f8ca46f9bc, type: 3}
-  m_Name: Timer5
+  m_Name: WatchtowerProximity
   m_EditorClassIdentifier: 
-  type: Timer
-  hasBeenFulfilled: 0
+  type: PlayerLocation
+  hasBeenFulfilled: 1
   itemTag: 
-  timer: 5
+  timer: 0
   npcName: 
-  targetLocation: {x: 0, y: 0, z: 0}
-  proximityThreshold: 0
+  targetLocation: {x: 0.5198447, y: 73.92113, z: 27.65205}
+  proximityThreshold: 75
   interactable: 
